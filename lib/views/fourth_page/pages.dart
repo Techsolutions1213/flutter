@@ -1,3 +1,4 @@
+import 'package:fluro/fluro.dart';
 import 'package:flutter/material.dart';
 
 import '../../routers/application.dart';
@@ -51,14 +52,18 @@ class Page extends StatelessWidget {
               ..putBool(SharedPreferencesKeys.showWelcome, false);
             _goHomePage(context);
           } else if (type == 'goGithub') {
-            Application.router.navigateTo(context,
-                '${Routes.webViewPage}?title=${Uri.encodeComponent(txt)} Doc&&url=${Uri.encodeComponent("https://github.com/alibaba/flutter-go")}');
+            Application.router.navigateTo(
+              context,
+              '${Routes.webViewPage}?title=${Uri.encodeComponent(txt)} Doc&&url=${Uri.encodeComponent("https://github.com/alibaba/flutter-go")}',
+              transition: TransitionType.nativeModal,
+            );
           }
         },
         elevation: 10.0,
         color: Colors.black26,
         // shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.horizontal(left: Radius.circular(20.0))),
+        shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.horizontal(left: Radius.circular(20.0))),
         //如果不手动设置icon和text颜色,则默认使用foregroundColor颜色
         icon: Icon(iconName, color: Colors.white, size: 14.0),
         label: Text(
@@ -71,11 +76,13 @@ class Page extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final paddingTop = MediaQuery.of(context).padding.top;
     return Stack(
         //alignment: const Alignment(1.2, 0.6),
         children: [
           Container(
               width: double.infinity,
+
               /// height:MediaQuery.of(context).size.height-200.0,
               color: viewModel.color,
               padding: const EdgeInsets.fromLTRB(0, 0, 0, 0),
@@ -86,15 +93,17 @@ class Page extends StatelessWidget {
                     layout(context),
                   ],
                 ),
-              )
-          ),
+              )),
           Positioned(
               right: -5.0,
-              top: 2.0,
-              child: creatButton(context, 'GitHub', Icons.arrow_forward, 'goGithub')
-          ),
-        ]
-    );
+              top: paddingTop + 2.0,
+              child: creatButton(
+                context,
+                'GitHub',
+                Icons.arrow_forward,
+                'goGithub',
+              )),
+        ]);
   }
 
   Column layout(BuildContext context) {

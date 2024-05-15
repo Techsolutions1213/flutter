@@ -12,7 +12,6 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:flutter_go/utils/shared_preferences.dart';
 
-
 class SearchHistory {
   final String name;
   final String targetRouter;
@@ -73,7 +72,7 @@ class SearchHistoryList {
   }
 
   add(SearchHistory item) {
-    print("_searchHistoryList> ${_searchHistoryList.length}");
+    print("add item to serach history ${item.targetRouter}");
     for (SearchHistory value in _searchHistoryList) {
       if (value.name == item.name) {
         return;

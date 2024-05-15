@@ -1,3 +1,5 @@
+import 'package:fluro/fluro.dart';
+
 /// @Author: 一凨
 /// @Date: 2019-01-08 17:12:58
 /// @Last Modified by: 一凨
@@ -11,6 +13,7 @@ import 'package:flutter_go/routers/application.dart';
 import 'package:flutter_go/routers/routers.dart';
 import 'package:flutter_go/event/event_bus.dart';
 import 'package:flutter_go/event/event_model.dart';
+
 /// import 'package:flutter_go/utils/data_utils.dart';
 
 class CollectionPage extends StatefulWidget {
@@ -26,6 +29,7 @@ class _CollectionPageState extends State<CollectionPage> {
     final eventBus = new EventBus();
     ApplicationEvent.event = eventBus;
   }
+
   /// CollectionControlModel _collectionControl = new CollectionControlModel();
   List<Collection> _collectionList = [];
   ScrollController _scrollController = new ScrollController();
@@ -116,11 +120,17 @@ class _CollectionPageState extends State<CollectionPage> {
         onTap: () {
           if (_collectionList[index - 1].router.contains('http')) {
             // 注意这里title已经转义过了
-            Application.router.navigateTo(context,
-                '${Routes.webViewPage}?title=${_collectionList[index - 1].name}&url=${Uri.encodeComponent(_collectionList[index - 1].router)}');
+            Application.router.navigateTo(
+              context,
+              '${Routes.webViewPage}?title=${_collectionList[index - 1].name}&url=${Uri.encodeComponent(_collectionList[index - 1].router)}',
+              transition: TransitionType.nativeModal,
+            );
           } else {
-            Application.router
-                .navigateTo(context, "${_collectionList[index - 1].router}");
+            Application.router.navigateTo(
+              context,
+              "${_collectionList[index - 1].router}",
+              transition: TransitionType.nativeModal,
+            );
           }
         },
       ),

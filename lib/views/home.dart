@@ -6,6 +6,7 @@
 /// target:  app首页
 
 import 'package:flutter/material.dart';
+
 /// import 'package:flutter/rendering.dart';
 import 'package:flutter_go/utils/data_utils.dart';
 import 'package:flutter_go/utils/shared_preferences.dart';
@@ -15,10 +16,13 @@ import 'package:fluro/fluro.dart';
 import 'package:flutter_go/views/user_page/user_page.dart';
 import 'package:flutter_go/views/widget_page/widget_page.dart';
 import 'package:flutter_go/views/welcome_page/fourth_page.dart';
+
 /// import 'package:flutter_go/views/collection_page/collection_page.dart';
 import 'package:flutter_go/routers/application.dart';
+
 /// import 'package:flutter_go/utils/provider.dart';
 import 'package:flutter_go/model/widget.dart';
+
 /// import 'package:flutter_go/widgets/index.dart';
 import 'package:flutter_go/components/search_input.dart';
 import 'package:flutter_go/model/search_history.dart';
@@ -57,10 +61,11 @@ class _MyHomePageState extends State<AppPage>
     print('widget.userInfo    ${widget.userInfo}');
     initSearchHistory();
 
-    if(Application.pageIsOpen == true){// 是否展开业界动态
+    if (Application.pageIsOpen == true) {
+      // 是否展开业界动态
       tabData.insert(0, {'text': '业界动态', 'icon': Icon(Icons.language)});
       _list
-      //..add(FirstPage())
+        //..add(FirstPage())
         ..add(MainPage(userInfo: widget.userInfo));
     }
     appBarTitle = tabData[0]['text'];
@@ -73,7 +78,6 @@ class _MyHomePageState extends State<AppPage>
         ),
       ));
     }
-
   }
 
   @override
@@ -90,12 +94,12 @@ class _MyHomePageState extends State<AppPage>
 
   void onWidgetTap(WidgetPoint widgetPoint, BuildContext context) {
     String targetName = widgetPoint.name;
-    searchHistoryList.add(
-        SearchHistory(name: targetName, targetRouter: widgetPoint.routerName));
-    print("searchHistoryList1 ${searchHistoryList.toString()}");
     String targetRouter = widgetPoint.routerName;
+    searchHistoryList
+        .add(SearchHistory(name: targetName, targetRouter: targetRouter));
+    print("searchHistoryList1 ${searchHistoryList.toString()}");
     Application.router.navigateTo(context, targetRouter.toLowerCase(),
-        transition: TransitionType.inFromRight);
+        transition: TransitionType.native);
   }
 
   Widget buildSearchInput(BuildContext context) {
@@ -123,7 +127,7 @@ class _MyHomePageState extends State<AppPage>
   renderAppBar(BuildContext context, Widget widget, int index) {
     if (index == 1 && Application.pageIsOpen == true) {
       return AppBar(title: buildSearchInput(context));
-    }else if(index == 0 && Application.pageIsOpen == false){
+    } else if (index == 0 && Application.pageIsOpen == false) {
       return AppBar(title: buildSearchInput(context));
     }
   }
