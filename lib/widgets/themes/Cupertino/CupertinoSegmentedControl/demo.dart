@@ -1,3 +1,4 @@
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -9,10 +10,10 @@ class _Demo extends State<CupertinoSegmentedControlDemo> {
   String value = 'a';
   @override
   Widget build(BuildContext context) {
-    return CupertinoSegmentedControl(
+    return  CupertinoSegmentedControl(
       onValueChanged: (v) {
         this.setState(() {
-          value = v;
+           value = v;
         });
       },
       pressedColor: Color(0xff7c1c25),
@@ -21,10 +22,15 @@ class _Demo extends State<CupertinoSegmentedControlDemo> {
       groupValue: value,
       children: {
         'a': Container(
-            alignment: Alignment.center, width: 130.0, child: Text('a')),
+          alignment: Alignment.center,
+          width: 130.0,
+          child: Text('a')
+        ),
         'c': Text('C'),
         'b': Text('B'),
       },
     );
   }
+
 }
+

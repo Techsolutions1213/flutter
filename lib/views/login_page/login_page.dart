@@ -1,4 +1,3 @@
-import 'package:fluro/fluro.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:event_bus/event_bus.dart';
@@ -250,6 +249,21 @@ class _LoginPageState extends State<LoginPage> {
                 MaterialPageRoute(builder: (context) => AppPage(userResult)),
                 (route) => route == null);
           });
+        });
+        }else if(userResult.runtimeType == String){
+          Fluttertoast.showToast(
+          msg: userResult,
+          toastLength: Toast.LENGTH_SHORT,
+          gravity: ToastGravity.CENTER,
+          timeInSecForIos: 1,
+          backgroundColor: Theme.of(context).primaryColor,
+          textColor: Colors.white,
+          fontSize: 16.0);
+        }
+      } catch (err) {
+        Navigator.of(context).pushAndRemoveUntil(
+            MaterialPageRoute(builder: (context) => AppPage(userResult)),
+            (route) => route == null);
       }
     }).catchError((errorMsg) {
       setState(() {
@@ -361,11 +375,8 @@ class _LoginPageState extends State<LoginPage> {
                                   decoration: TextDecoration.underline),
                             ),
                             onPressed: () {
-                              Application.router.navigateTo(
-                                context,
-                                '${Routes.webViewPage}?title=Github&url=${Uri.encodeComponent("https://github.com/login/oauth/authorize?client_id=cfe4795e76382ae8a5bd&scope=user,public_repo")}',
-                                transition: TransitionType.nativeModal,
-                              );
+                              Application.router.navigateTo(context,
+                                  '${Routes.webViewPage}?title=Github&url=${Uri.encodeComponent("https://github.com/login/oauth/authorize?client_id=cfe4795e76382ae8a5bd&scope=user,public_repo")}');
                             },
                           ),
                           FlatButton(
@@ -376,6 +387,10 @@ class _LoginPageState extends State<LoginPage> {
                                   decoration: TextDecoration.underline),
                             ),
                             onPressed: () {
+                              Navigator.of(context).pushAndRemoveUntil(
+                                  MaterialPageRoute(
+                                      builder: (context) => AppPage(UserInformation(id: 0))),
+                                  (route) => route == null);
                             },
                           )
                         ],

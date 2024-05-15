@@ -1,12 +1,14 @@
+
+
 import 'package:sqflite/sqflite.dart';
 
 import './provider.dart';
 
-class BaseModel {
+class BaseModel{
   Database db;
   final String table = '';
   var query;
-  BaseModel(this.db) {
+  BaseModel(this.db){
     query = db.query;
   }
 }
@@ -18,21 +20,18 @@ class Sql extends BaseModel {
         super(Provider.db);
 
   // sdf
-  Future<List> get() async {
+  Future<List> get() async{
     return await this.query(tableName);
   }
-
-  String getTableName() {
+  String getTableName () {
     return tableName;
   }
 
-  Future<int> delete(String value, String key) async {
-    return await this
-        .db
-        .delete(tableName, where: '$key = ?', whereArgs: [value]);
+  Future<int> delete(String value,String key) async{
+    return await this.db.delete(tableName,where:'$key = ?',whereArgs:[value]);
   }
 
-  Future<int> deleteAll() async {
+  Future<int> deleteAll() async{
     return await this.db.delete(tableName);
   }
 
@@ -45,7 +44,7 @@ class Sql extends BaseModel {
     int index = 0;
     conditions.forEach((key, value) {
       if (value == null) {
-        return;
+        return ;
       }
       if (value.runtimeType == String) {
         stringConditions = '$stringConditions $key = "$value"';
@@ -54,7 +53,7 @@ class Sql extends BaseModel {
         stringConditions = '$stringConditions $key = $value';
       }
 
-      if (index >= 0 && index < conditions.length - 1) {
+      if (index >= 0 && index < conditions.length -1) {
         stringConditions = '$stringConditions and';
       }
       index++;
@@ -62,21 +61,18 @@ class Sql extends BaseModel {
     // print("this is string condition for sql > $stringConditions");
     return await this.query(tableName, where: stringConditions);
   }
-
   Future<Map<String, dynamic>> insert(Map<String, dynamic> json) async {
     var id = await this.db.insert(tableName, json);
     json['id'] = id;
     return json;
   }
-
   ///
   /// 搜索
   /// @param Object condition
   /// @mods [And, Or] default is Or
   /// search({'name': "hanxu', 'id': 1};
   ///
-  Future<List> search(
-      {Map<String, dynamic> conditions, String mods = 'Or'}) async {
+  Future<List> search({Map<String, dynamic> conditions, String mods = 'Or'}) async {
     if (conditions == null || conditions.isEmpty) {
       return this.get();
     }
@@ -84,7 +80,7 @@ class Sql extends BaseModel {
     int index = 0;
     conditions.forEach((key, value) {
       if (value == null) {
-        return;
+        return ;
       }
 
       if (value.runtimeType == String) {
@@ -94,7 +90,7 @@ class Sql extends BaseModel {
         stringConditions = '$stringConditions $key = "%$value%"';
       }
 
-      if (index >= 0 && index < conditions.length - 1) {
+      if (index >= 0 && index < conditions.length -1) {
         stringConditions = '$stringConditions $mods';
       }
       index++;

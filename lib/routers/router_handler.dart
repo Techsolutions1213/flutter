@@ -21,16 +21,18 @@ var homeHandler = new Handler(
 );
 
 var collectionFullHandler = new Handler(
-    handlerFunc: (BuildContext context, Map<String, List<String>> params) {
-  bool hasLogined = params['hasLogin']?.first == 'true';
-  return CollectionFullPage(hasLogined: hasLogined);
-});
+  handlerFunc: (BuildContext context,Map<String,List<String>> params){
+    bool hasLogined = params['hasLogin']?.first == 'true';
+    return CollectionFullPage(hasLogined: hasLogined);
+  }
+);
 
 var collectionHandler = new Handler(
-    handlerFunc: (BuildContext context, Map<String, List<String>> params) {
-  bool hasLogined = params['hasLogin']?.first == 'true';
-  return CollectionPage(hasLogined: hasLogined);
-});
+  handlerFunc: (BuildContext context,Map<String,List<String>> params){
+    bool hasLogined = params['hasLogin']?.first == 'true';
+    return CollectionPage(hasLogined: hasLogined);
+  }
+);
 
 var categoryHandler = new Handler(
   handlerFunc: (BuildContext context, Map<String, List<String>> params) {
@@ -42,28 +44,29 @@ var categoryHandler = new Handler(
 
 var widgetNotFoundHandler = new Handler(
     handlerFunc: (BuildContext context, Map<String, List<String>> params) {
-  return new WidgetNotFound();
-});
+      return new WidgetNotFound();
+    });
 var loginPageHandler = new Handler(
     handlerFunc: (BuildContext context, Map<String, List<String>> params) {
-  return LoginPage();
-});
+      return LoginPage();
+    });
 
 var fullScreenCodeDialog = new Handler(
     handlerFunc: (BuildContext context, Map<String, List<String>> params) {
-  String path = params['filePath']?.first;
-  return new FullScreenCodeDialog(
-    filePath: path,
-  );
-});
+      String path = params['filePath']?.first;
+      return new FullScreenCodeDialog(
+        filePath: path,
+      );
+    });
+
 
 var githubCodeDialog = new Handler(
     handlerFunc: (BuildContext context, Map<String, List<String>> params) {
-  String path = params['remotePath']?.first;
-  return new FullScreenCodeDialog(
-    remoteFilePath: path,
-  );
-});
+      String path = params['remotePath']?.first;
+      return new FullScreenCodeDialog(
+        remoteFilePath: path,
+      );
+    });
 
 var webViewPageHand = new Handler(
     handlerFunc: (BuildContext context, Map<String, List<String>> params) {
@@ -72,13 +75,16 @@ var webViewPageHand = new Handler(
   return new WebViewPage(url, title);
 });
 
+
 var standardPageHandler = new Handler(
-    handlerFunc: (BuildContext context, Map<String, List<String>> params) {
-  String id = params['id']?.first;
-  return StandardView(id: id);
-});
+  handlerFunc: (BuildContext context, Map<String, List<String>> params) {
+    String id = params['id']?.first;
+    return StandardView(id: id);
+  }
+);
+
 
 var issuesMessageHandler = new Handler(
     handlerFunc: (BuildContext context, Map<String, List<String>> params) {
-  return IssuesMessagePage();
-});
+      return IssuesMessagePage();
+    });

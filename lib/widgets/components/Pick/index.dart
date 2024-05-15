@@ -33,4 +33,5 @@ List<WidgetPoint> widgetPoints = [
     routerName: CityPicker.Demo.routeName,
     buildRouter: (BuildContext context) => CityPicker.Demo(),
   ),
+
 ];

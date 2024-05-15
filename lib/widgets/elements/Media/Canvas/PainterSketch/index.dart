@@ -13,6 +13,7 @@ const Text1 = '''
 - canvas + paint + GestureDetector 实现一个 简易的画板;
 ''';
 
+
 class Demo extends StatefulWidget {
   static const String routeName = '/element/Media/﻿Canvas/PainterSketch';
 
@@ -25,8 +26,13 @@ class _DemoState extends State<Demo> {
     return WidgetDemo(
       title: 'PainterSketch',
       codeUrl: 'elements/Media/Canvas/PainterSketch/demo.dart',
-      contentList: [Text, Text1, demoBoxs.PainterSketchDome()],
+      contentList: [
+        Text,
+        Text1,
+        demoBoxs.PainterSketchDome()
+      ],
       docUrl: 'https://docs.flutter.io/flutter/dart-ui/Paint-class.html',
     );
   }
 }
+

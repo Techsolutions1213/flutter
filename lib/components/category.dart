@@ -3,15 +3,17 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 
 import '../routers/application.dart';
-
 /// import '../model/cat.dart';
 import '../model/widget.dart';
 import '../widgets/index.dart';
 import '../components/widget_item_container.dart';
 
+
+
 class CategoryHome extends StatefulWidget {
   CategoryHome(this.token);
   final String token;
+
 
   @override
   _CategoryHome createState() => new _CategoryHome();
@@ -23,6 +25,7 @@ class _CategoryHome extends State<CategoryHome> {
   List<CommonItem> items = [];
   List<Object> widgetPoints = [];
   List<CommonItem> catHistory = new List();
+
 
   // 所有的可用demos;
   List widgetDemosList = new WidgetDemoList().getDemos();
@@ -36,11 +39,24 @@ class _CategoryHome extends State<CategoryHome> {
     CommonItem targetGroup = Application.widgetTree.find(widget.token) ?? [];
     print("targetGroup::: $targetGroup");
 
-    catHistory.add(targetGroup);
+    catHistory.add(
+      targetGroup
+    );
     this.setState(() {
       items = targetGroup.children;
     });
     searchCatOrWidget();
+  }
+
+
+
+  Future<bool> back() {
+//    if (catHistory.length == 1) {
+//      return Future<bool>.value(true);
+//    }
+//    catHistory.removeLast();
+//    searchCatOrWidget();
+    return Future<bool>.value(true);
   }
 
   void go(CommonItem cat) {
@@ -50,8 +66,9 @@ class _CategoryHome extends State<CategoryHome> {
 
   void searchCatOrWidget() async {
     /// CommonItem widgetTree = Application.widgetTree;
-    // 假设进入这个界面的parent一定存在
+     // 假设进入这个界面的parent一定存在
     CommonItem targetGroup = catHistory.last;
+
 
     this.setState(() {
       title = targetGroup.name;
@@ -62,9 +79,14 @@ class _CategoryHome extends State<CategoryHome> {
     go(cat);
   }
 
+
+
   Widget _buildContent() {
-    WidgetItemContainer wiContaienr =
-        WidgetItemContainer(columnCount: 3, commonItems: items);
+    WidgetItemContainer wiContaienr = WidgetItemContainer(
+      columnCount: 3,
+      commonItems: items
+    );
+
 
     return Container(
       padding: const EdgeInsets.only(bottom: 10.0, top: 5.0),
@@ -80,15 +102,26 @@ class _CategoryHome extends State<CategoryHome> {
 
   @override
   Widget build(BuildContext context) {
+
+
     return Scaffold(
       appBar: AppBar(
         title: Text("$title"),
       ),
-      body: ListView(
-        children: <Widget>[
-          _buildContent(),
-        ],
+      body: WillPopScope(
+
+        onWillPop: () {
+          return back();
+        },
+
+        child: ListView(
+          children: <Widget>[
+            _buildContent(),
+          ],
+        ),
+        // child: Container(color: Colors.blue,child: Text('123'),),
       ),
     );
   }
 }
+

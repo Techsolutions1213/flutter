@@ -1,3 +1,4 @@
+
 import 'package:flutter/material.dart';
 
 import 'package:flutter_go/components/widget_demo.dart';
@@ -35,15 +36,15 @@ class _DemoState extends State<Demo> {
       title: 'Align',
       codeUrl: "elements/Frame/Align/Align/demo.dart",
       docUrl: 'https://docs.flutter.io/flutter/widgets/Align-class.html',
-      contentList: [_flatText0, _alignCreate(), _flatText1, _alignCreates()],
+      contentList: [_flatText0, _alignCreate(),_flatText1,_alignCreates()],
     );
   }
 
   Column _alignCreate() {
-    return Column(
+    return  Column(
       children: <Widget>[
         SizedBox(height: 10.0),
-        Row(
+         Row(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: <Widget>[
             AlignAlignment(Alignment.center, 'center'),
@@ -51,7 +52,7 @@ class _DemoState extends State<Demo> {
           ],
         ),
         SizedBox(height: 10.0),
-        Row(
+         Row(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: <Widget>[
             AlignAlignment(Alignment.centerRight, 'centerRight'),
@@ -60,7 +61,7 @@ class _DemoState extends State<Demo> {
           ],
         ),
         SizedBox(height: 10.0),
-        Row(
+         Row(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: <Widget>[
             AlignAlignment(Alignment.topLeft, 'topLeft'),
@@ -69,29 +70,31 @@ class _DemoState extends State<Demo> {
           ],
         ),
         SizedBox(height: 10.0),
+       
+        
       ],
     );
   }
 }
 
-Column _alignCreates() {
+Column _alignCreates(){
   return Column(
     children: <Widget>[
       Container(
-        margin: EdgeInsets.only(top: 20.0, bottom: 20.0),
-        color: Color(0xffe91e63),
-        child: Align(
-          alignment: Alignment.topLeft,
-          child: Text(
-            "Align",
-            style: TextStyle(color: Color(0xffffffff)),
+          margin:  EdgeInsets.only(top: 20.0, bottom: 20.0),
+          color: Color(0xffe91e63),
+          child:  Align(
+            alignment: Alignment.topLeft,
+            child:  Text(
+              "Align",
+              style: TextStyle(color: Color(0xffffffff)),
+            ),
           ),
         ),
-      ),
-      AlignFactor(Alignment.topLeft, 2.0, 2.0, 'topleft'),
-      AlignFactor(Alignment.topRight, null, null, 'topleft'),
-      AlignFactor(Alignment.center, null, null, 'center'),
-      AlignFactor(Alignment.bottomLeft, null, null, 'bottomLeft')
+        AlignFactor(Alignment.topLeft, 2.0, 2.0, 'topleft'),
+        AlignFactor(Alignment.topRight, null, null, 'topleft'),
+        AlignFactor(Alignment.center, null, null, 'center'),
+        AlignFactor(Alignment.bottomLeft, null, null, 'bottomLeft')
     ],
   );
 }

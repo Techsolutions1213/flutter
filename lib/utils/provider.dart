@@ -32,10 +32,9 @@ class Provider {
     if (db == null) {
       return Future.value([]);
     }
-    List tables = await db
-        .rawQuery('SELECT name FROM sqlite_master WHERE type = "table"');
+    List tables = await db.rawQuery('SELECT name FROM sqlite_master WHERE type = "table"');
     List<String> targetList = [];
-    tables.forEach((item) {
+    tables.forEach((item)  {
       targetList.add(item['name']);
     });
     return targetList;
@@ -47,12 +46,13 @@ class Provider {
 
     List<String> tables = await getTables();
 
-    for (int i = 0; i < expectTables.length; i++) {
+    for(int i = 0; i < expectTables.length; i++) {
       if (!tables.contains(expectTables[i])) {
         return false;
       }
     }
-    return true;
+   return true;
+
   }
 
   //初始化数据库
@@ -89,4 +89,5 @@ class Provider {
       print("Opening existing database");
     }
   }
+
 }

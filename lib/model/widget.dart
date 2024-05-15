@@ -1,10 +1,14 @@
+
 import 'dart:async';
 
 import "package:flutter/material.dart";
 import "package:flutter_go/routers/application.dart";
 import 'package:flutter_go/utils/sql.dart';
 
-enum treeNode { CategoryComponent, WidgetLeaf }
+enum treeNode {
+  CategoryComponent,
+  WidgetLeaf
+}
 
 //typedef aaa
 
@@ -131,7 +135,6 @@ class WidgetControlModel {
     }
     return new WidgetPoint.fromJSON(json.first);
   }
-
   Future<List<WidgetPoint>> search(String name) async {
     List json = await sql.search(conditions: {'name': name});
 
@@ -146,7 +149,6 @@ class WidgetControlModel {
     return widgets;
   }
 }
-
 // 抽象类
 abstract class CommonItem<T> {
   int id;
@@ -177,17 +179,19 @@ class CategoryComponent extends CommonItem {
   CommonItem parent;
   String token;
 
+
   List<CommonItem> children = [];
 
   String type = 'category';
 
-  CategoryComponent(
-      {@required this.id,
-      @required this.name,
-      @required this.parentId,
-      this.type = 'categoryw',
-      this.children,
-      this.parent});
+  CategoryComponent({
+    @required this.id,
+    @required this.name,
+    @required this.parentId,
+    this.type = 'categoryw',
+    this.children,
+    this.parent
+  });
   CategoryComponent.fromJson(Map json) {
     if (json['id'] != null && json['id'].runtimeType == String) {
       this.id = int.parse(json['id']);
@@ -202,25 +206,27 @@ class CategoryComponent extends CommonItem {
     if (item is CategoryComponent) {
       CategoryComponent cate = item;
       cate.parent = this;
-      this.children.add(cate);
+      this.children.add(
+          cate
+      );
     }
     if (item is WidgetLeaf) {
       WidgetLeaf widget = item;
       widget.parent = this;
-      this.children.add(widget);
+      this.children.add(
+          widget
+      );
     }
   }
-
   @override
   CommonItem getChild(String token) {
-    return children.firstWhere((CommonItem item) => item.token == token,
-        orElse: () => null);
+    return children.firstWhere((CommonItem item) => item.token == token, orElse: () => null);
   }
 
   @override
   CommonItem find(String token, [CommonItem node]) {
     CommonItem ret;
-    if (node != null) {
+    if (node !=null) {
       if (node.token == token) {
         return node;
       } else {
@@ -254,13 +260,14 @@ class WidgetLeaf extends CommonItem {
   CommonItem parent;
 
   String type = 'widget';
-  WidgetLeaf(
-      {@required this.id,
-      @required this.name,
-      @required this.display,
-      this.author,
-      this.path,
-      this.pageId});
+  WidgetLeaf({
+    @required this.id,
+    @required this.name,
+    @required this.display,
+    this.author,
+    this.path,
+    this.pageId
+  });
 
   WidgetLeaf.fromJson(Map json) {
     if (json['id'] != null && json['id'].runtimeType == String) {
@@ -279,27 +286,25 @@ class WidgetLeaf extends CommonItem {
   CommonItem getChild(String token) {
     return null;
   }
-
   @override
   addChildren(Object item) {
     // TODO: implement addChildren
     return null;
   }
 
-  CommonItem find(String token, [CommonItem node]) {
+  CommonItem find(String token, [CommonItem node]){
     return null;
   }
 }
 
 class WidgetTree {
   // 构建树型结构
-  static CategoryComponent buildWidgetTree(List json, [parent]) {
+  static CategoryComponent buildWidgetTree(List json, [parent]){
     CategoryComponent current;
     if (parent != null) {
       current = parent;
     } else {
-      current =
-          CategoryComponent(id: 0, name: 'root', parentId: null, children: []);
+      current = CategoryComponent(id: 0, name: 'root', parentId: null, children: []);
     }
     json.forEach((item) {
       // 归属分类级别
@@ -352,19 +357,17 @@ class WidgetTree {
     });
     return list;
   }
-
-  static CategoryComponent getCommonItemById(
-      List<int> path, CategoryComponent root) {
+  static CategoryComponent getCommonItemById(List<int> path, CategoryComponent root) {
     print("getCommonItemByPath $path");
     print("root $root");
     CommonItem childLeaf;
-
     /// int first = path.first;
     path = path.sublist(1);
     print("path:::: $path");
     if (path.length >= 0) {
 //      childLeaf = root.getChild(path.first);
     }
+
 
     return childLeaf;
   }

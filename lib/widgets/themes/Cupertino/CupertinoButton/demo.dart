@@ -8,6 +8,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
+
 // Checkbox 默认按钮的实例
 // index 当前checkbox 的索引值
 class CupertinoButtonFullDefault extends StatefulWidget {
@@ -17,8 +18,10 @@ class CupertinoButtonFullDefault extends StatefulWidget {
   State<StatefulWidget> createState() => _CupertinoButtonFullDefault();
 }
 
+
 // CupertinoButton 默认的实例,有状态
 class _CupertinoButtonFullDefault extends State {
+
   @override
   Widget build(BuildContext context) {
     return CupertinoButton(
@@ -26,8 +29,8 @@ class _CupertinoButtonFullDefault extends State {
       onPressed: () {
         print('on Pressed!');
       },
-      pressedOpacity: 0.5, // 按下后的按钮不透明度
-      color: CupertinoColors.inactiveGray,
+      pressedOpacity:0.5,// 按下后的按钮不透明度
+      color:CupertinoColors.inactiveGray,
       child: new Text('CupertinoButton'),
     );
   }

@@ -13,21 +13,23 @@ class WidgetItemContainer extends StatelessWidget {
   // 所有的可用demos;
   final List widgetDemosList = new WidgetDemoList().getDemos();
 
-  WidgetItemContainer({
-    Key key,
-    @required this.commonItems,
-    @required this.columnCount,
+  WidgetItemContainer(
+      {Key key,
+      @required this.commonItems,
+      @required this.columnCount,
 //      @required this.isWidgetPoint
-  }) : super(key: key);
+      })
+      : super(key: key);
 
   /// 跳转goup
   void tapToGroup(CategoryComponent cate, BuildContext context) {
-    Application.router.navigateTo(context, "/category/${cate.token}",
-        transition: TransitionType.native);
+    Application.router
+        .navigateTo(context, "/category/${cate.token}", transition: TransitionType.inFromRight);
   }
 
   /// 跳转到老的widget界面
   void tapToOldWidget(WidgetLeaf leaf, BuildContext context) {
+
     String targetName = leaf.name;
     String targetRouter = '/category/error/404';
     widgetDemosList.forEach((item) {
@@ -36,21 +38,13 @@ class WidgetItemContainer extends StatelessWidget {
         targetRouter = targetRouter.toLowerCase();
       }
     });
-    Application.router.navigateTo(
-      context,
-      targetRouter,
-      transition: TransitionType.native,
-    );
+    Application.router.navigateTo(context, targetRouter, transition: TransitionType.inFromRight);
   }
 
   /// 跳转到新的标准页
   void tapToStandardPage(WidgetLeaf leaf, BuildContext context) {
     String targetRouter = '/standard-page/${leaf.pageId}';
-    Application.router.navigateTo(
-      context,
-      targetRouter,
-      transition: TransitionType.native,
-    );
+    Application.router.navigateTo(context, targetRouter, transition: TransitionType.inFromRight);
   }
 
   List<Widget> _buildColumns(context) {
@@ -64,37 +58,37 @@ class WidgetItemContainer extends StatelessWidget {
         if (addI < length) {
           CommonItem item = commonItems[addI];
 
+
           _listRows.add(
             Expanded(
               flex: 1,
               child: WidgetItem(
-                  title: item.name,
-                  onTap: () {
-                    String type = item.type;
+                title: item.name,
+                onTap: () {
+                  String type = item.type;
 
-                    if (type == "category") {
-                      return tapToGroup(item as CategoryComponent, context);
+                  if (type == "category") {
+                    return tapToGroup(item as CategoryComponent, context);
+                  }
+                  if (type == "widget") {
+                    WidgetLeaf leaf = item as WidgetLeaf;
+
+                    if (leaf.display == "standard") {
+                      return tapToStandardPage(leaf, context);
+                    } else {
+                      return tapToOldWidget(leaf, context);
                     }
-                    if (type == "widget") {
-                      WidgetLeaf leaf = item as WidgetLeaf;
+                  }
 
-                      if (leaf.display == "standard") {
-                        return tapToStandardPage(leaf, context);
-                      } else {
-                        return tapToOldWidget(leaf, context);
-                      }
-                    }
-
-                    Application.router.navigateTo(
-                        context, "/category/error/404",
-                        transition: TransitionType.native);
-                  },
-                  index: addI,
-                  totalCount: length,
-                  rowLength: columnCount,
-
-                  /// textSize: true ? 'middle' : 'small',
-                  textSize: 'middle'),
+                  Application.router
+                        .navigateTo(context, "/category/error/404", transition: TransitionType.inFromRight);
+                },
+                index: addI,
+                totalCount: length,
+                rowLength: columnCount,
+                /// textSize: true ? 'middle' : 'small',
+                textSize: 'middle'
+              ),
             ),
           );
         } else {
@@ -122,3 +116,4 @@ class WidgetItemContainer extends StatelessWidget {
     );
   }
 }
+

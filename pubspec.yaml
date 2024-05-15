@@ -29,7 +29,7 @@ dependencies:
   share: ^0.6.1+1
   flutter_spinkit: "^3.1.0"
   fluttertoast: ^3.1.0
-  dio: ">=2.0.15 <6.0.0"
+  dio: ^2.0.15
   flutter_webview_plugin: ^0.3.5
   cookie_jar: ^1.0.0
   # 日期格式化
@@ -51,8 +51,8 @@ dependencies:
   open_file: ^2.0.1+2
   package_info: ^0.4.0+3
   flutter_jpush: ^0.0.4
-  zefyr: ^0.8.0
-  pull_to_refresh: ^1.5.6
+  zefyr:
+    path: ./zefyr
 
 
 dev_dependencies:
