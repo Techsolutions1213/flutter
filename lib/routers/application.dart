@@ -11,7 +11,7 @@ enum ENV {
 
 class Application {
   /// 通过Application设计环境变量
-  static ENV env = ENV.DEV;
+  static ENV env = ENV.PRODUCTION;
 
   static Router router;
   static TabController controller;
