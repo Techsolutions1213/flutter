@@ -14,6 +14,7 @@ class CupertinoSliverNavigationBarDemo extends StatefulWidget {
 
 class _Demo extends State<CupertinoSliverNavigationBarDemo> {
   double value = 0.0;
+  @override
   Widget build(BuildContext context) {
     return CupertinoPageScaffold(
       child: DecoratedBox(
@@ -28,8 +29,9 @@ class _Demo extends State<CupertinoSliverNavigationBarDemo> {
               trailing: Icon(Icons.perm_camera_mic)
             ),
             CupertinoSliverRefreshControl(
-              onRefresh: () {
-              },
+//              onRefresh: () {
+//
+//              },
             ),
             SliverSafeArea(
                 top: false, // Top safe area is consumed by the navigation bar.

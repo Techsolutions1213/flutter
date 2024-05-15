@@ -25,12 +25,12 @@ class Demo extends StatefulWidget {
 }
 
 class _Demo extends State<Demo> {
-
+  @override
   Widget build(BuildContext context) {
     return WidgetDemo(
       title: 'Rich Text',
       docUrl: 'https://docs.flutter.io/flutter/widgets/RichText-class.html',
-      codeUrl: 'elements/Form/Text/RichText/index.dart',
+      codeUrl: 'elements/Form/Text/RichText/demo.dart',
       contentList: [
         intro,
         RichTextDemo(),
