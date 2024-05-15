@@ -9,7 +9,7 @@ import 'package:flutter/material.dart';
 /// import 'package:flutter/rendering.dart';
 import 'package:flutter_go/utils/data_utils.dart';
 import 'package:flutter_go/utils/shared_preferences.dart';
-/// import 'package:flutter_go/views/first_page/first_page.dart';
+
 import 'package:flutter_go/views/first_page/main_page.dart';
 import 'package:fluro/fluro.dart';
 import 'package:flutter_go/views/user_page/user_page.dart';
@@ -26,9 +26,6 @@ import 'package:flutter_go/resources/widget_name_to_icon.dart';
 import 'package:flutter_go/model/user_info.dart';
 
 class AppPage extends StatefulWidget {
-  final UserInformation userInfo;
-
-  AppPage(this.userInfo);
 
   @override
   State<StatefulWidget> createState() {
@@ -76,10 +73,7 @@ class _MyHomePageState extends State<AppPage>
         ),
       ));
     }
-      _list
-        ..add(WidgetPage())
-        ..add(FourthPage())
-        ..add(UserPage(userInfo: widget.userInfo));
+
   }
 
   @override
