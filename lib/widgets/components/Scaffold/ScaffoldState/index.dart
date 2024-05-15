@@ -24,6 +24,7 @@ const String _Text0 = """
 
 """;
 
+
 class Demo extends StatefulWidget {
   static const String routeName = '/components/Scaffold/ScaffoldState';
 
@@ -37,9 +38,11 @@ class _DemoState extends State<Demo> {
     return WidgetDemo(
       title: 'ScaffoldState',
       codeUrl: 'components/Scaffold/ScaffoldState/demo.dart',
-      contentList: [_Text0, ScaffoldStateDemo()],
-      docUrl:
-          'https://docs.flutter.io/flutter/material/ScaffoldState-class.html',
+      contentList: [
+        _Text0,
+        ScaffoldStateDemo()
+      ],
+      docUrl: 'https://docs.flutter.io/flutter/material/ScaffoldState-class.html',
     );
   }
 }

@@ -30,8 +30,10 @@ Navigator.of(context, rootNavigator: true)
 
 ''';
 
+
 class Demo extends StatefulWidget {
-  static const String routeName = '/element/themes/Cupertino/CupertinoTabView';
+  static const String routeName =
+      '/element/themes/Cupertino/CupertinoTabView';
 
   @override
   State<StatefulWidget> createState() => _DemoState();
@@ -43,9 +45,11 @@ class _DemoState extends State<Demo> {
     return WidgetDemo(
       title: 'CupertinoTabView',
       codeUrl: 'themes/Cupertino/CupertinoTabView/demo.dart',
-      docUrl:
-          'https://docs.flutter.io/flutter/cupertino/CupertinoTabView-class.html',
-      contentList: [Text0, CupertinoTabScaffoldDemo()],
+      docUrl: 'https://docs.flutter.io/flutter/cupertino/CupertinoTabView-class.html',
+      contentList: [
+        Text0,
+        CupertinoTabScaffoldDemo()
+      ],
     );
   }
 }

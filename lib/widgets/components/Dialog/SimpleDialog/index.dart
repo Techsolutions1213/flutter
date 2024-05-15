@@ -25,6 +25,7 @@ const String _Text0 = """
 
 """;
 
+
 class Demo extends StatefulWidget {
   static const String routeName = '/components/Dialog/SimpleDialog';
 
@@ -38,9 +39,11 @@ class _DemoState extends State<Demo> {
     return WidgetDemo(
       title: 'SimpleDialog',
       codeUrl: 'components/Dialog/SimpleDialog/demo.dart',
-      contentList: [_Text0, SimpleDialogDemo()],
-      docUrl:
-          'https://docs.flutter.io/flutter/material/SimpleDialog-class.html',
+      contentList: [
+        _Text0,
+        SimpleDialogDemo()
+      ],
+      docUrl: 'https://docs.flutter.io/flutter/material/SimpleDialog-class.html',
     );
   }
 }

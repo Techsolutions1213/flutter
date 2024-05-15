@@ -18,6 +18,7 @@ const String intro = """
 
 """;
 
+
 class Demo extends StatefulWidget {
   static const String routeName = '/element/Form/Text/RichText';
   _Demo createState() => _Demo();
@@ -27,12 +28,12 @@ class _Demo extends State<Demo> {
   @override
   Widget build(BuildContext context) {
     return WidgetDemo(
-        title: 'Rich Text',
-        docUrl: 'https://docs.flutter.io/flutter/widgets/RichText-class.html',
-        codeUrl: 'elements/Form/Text/RichText/demo.dart',
-        contentList: [
-          intro,
-          RichTextDemo(),
-        ]);
+      title: 'Rich Text',
+      docUrl: 'https://docs.flutter.io/flutter/widgets/RichText-class.html',
+      codeUrl: 'elements/Form/Text/RichText/demo.dart',
+      contentList: [
+        intro,
+        RichTextDemo(),
+      ]);
   }
 }

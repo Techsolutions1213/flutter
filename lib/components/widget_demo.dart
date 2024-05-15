@@ -3,14 +3,12 @@
 
 import 'dart:core';
 
-import 'package:fluro/fluro.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_go/utils/data_utils.dart';
 
 import '../routers/application.dart';
 import '../routers/routers.dart';
 import '../components/markdown.dart';
-
 /// import '../model/collection.dart';
 import '../widgets/index.dart';
 import '../event/event_bus.dart';
@@ -37,7 +35,6 @@ class WidgetDemo extends StatefulWidget {
 
 class _WidgetDemoState extends State<WidgetDemo> {
   bool _hasCollected = false;
-
   /// CollectionControlModel _collectionControl = new CollectionControlModel();
   var _collectionIcons;
   List widgetDemosList = new WidgetDemoList().getDemos();
@@ -137,49 +134,45 @@ class _WidgetDemoState extends State<WidgetDemo> {
   void _selectValue(value) {
     if (value == 'doc') {
       // _launchURL(widget.docUrl);
-      Application.router.navigateTo(
-        context,
-        '${Routes.webViewPage}?title=${Uri.encodeComponent(widget.title)} Doc&&url=${Uri.encodeComponent(widget.docUrl)}',
-        transition: TransitionType.nativeModal,
-      );
+      Application.router.navigateTo(context,
+          '${Routes.webViewPage}?title=${Uri.encodeComponent(widget.title)} Doc&&url=${Uri.encodeComponent(widget.docUrl)}');
     } else if (value == 'code') {
-      Application.router.navigateTo(
-        context,
-        '${Routes.codeView}?filePath=${Uri.encodeComponent(widget.codeUrl)}',
-        transition: TransitionType.nativeModal,
-      );
+      Application.router.navigateTo(context,
+          '${Routes.codeView}?filePath=${Uri.encodeComponent(widget.codeUrl)}');
     }
   }
-
   List<PopupMenuEntry<String>> buildPopupMenu() {
     List<PopupMenuEntry<String>> comps = [];
     if (widget.docUrl != null) {
-      comps.add(PopupMenuItem<String>(
-        value: 'doc',
-        child: ListTile(
-          leading: Icon(
-            Icons.library_books,
-            size: 22.0,
-          ),
-          title: Text('查看文档'),
-        ),
-      ));
+      comps.add(
+          PopupMenuItem<String>(
+            value: 'doc',
+            child: ListTile(
+              leading: Icon(
+                Icons.library_books,
+                size: 22.0,
+              ),
+              title: Text('查看文档'),
+            ),
+          )
+      );
     }
     if (widget.codeUrl != null) {
-      comps.add(PopupMenuItem<String>(
-        value: 'code',
-        child: ListTile(
-          leading: Icon(
-            Icons.code,
-            size: 22.0,
-          ),
-          title: Text('查看Demo'),
-        ),
-      ));
+      comps.add(
+          PopupMenuItem<String>(
+            value: 'code',
+            child: ListTile(
+              leading: Icon(
+                Icons.code,
+                size: 22.0,
+              ),
+              title: Text('查看Demo'),
+            ),
+          )
+      );
     }
     return comps;
   }
-
   @override
   Widget build(BuildContext context) {
     if (_hasCollected) {
@@ -192,7 +185,7 @@ class _WidgetDemoState extends State<WidgetDemo> {
       new IconButton(
         tooltip: 'goBack home',
         onPressed: () {
-          Navigator.popUntil(context, ModalRoute.withName(Routes.root));
+          Navigator.popUntil(context, ModalRoute.withName('/'));
         },
         icon: Icon(Icons.home),
       ),
@@ -203,10 +196,12 @@ class _WidgetDemoState extends State<WidgetDemo> {
       ),
     ];
     if (menus.length > 0) {
-      actions.add(PopupMenuButton<String>(
-        onSelected: _selectValue,
-        itemBuilder: (BuildContext context) => menus,
-      ));
+      actions.add(
+          PopupMenuButton<String>(
+            onSelected: _selectValue,
+            itemBuilder: (BuildContext context) => menus,
+          )
+      );
     }
     return Scaffold(
         key: _scaffoldKey,

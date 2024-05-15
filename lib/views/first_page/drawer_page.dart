@@ -172,11 +172,9 @@ class _DrawerPageState extends State<DrawerPage> {
             style: textStyle,
           ),
           onTap: () {
-            Application.router.navigateTo(
-              context,
-              '${Routes.collectionFullPage}?hasLogin=${hasLogin.toString()}',
-              transition: TransitionType.nativeModal,
-            );
+            Application.router.navigateTo(context,
+                '${Routes.collectionFullPage}?hasLogin=${hasLogin.toString()}',
+                transition: TransitionType.fadeIn);
           },
         ),
         // new Divider(),
@@ -207,18 +205,11 @@ class _DrawerPageState extends State<DrawerPage> {
           onTap: () {
             if (hasLogin) {
               //issue 未登陆状态 返回登陆页面
-              Application.router.navigateTo(
-                context,
-                '${Routes.issuesMessage}',
-                transition: TransitionType.nativeModal,
-              );
+              Application.router.navigateTo(context, '${Routes.issuesMessage}');
             } else {
               //No description provided.
-              Application.router.navigateTo(
-                context,
-                '${Routes.loginPage}',
-                transition: TransitionType.nativeModal,
-              );
+              Application.router.navigateTo(context, '${Routes.loginPage}');
+
             }
           },
         ),

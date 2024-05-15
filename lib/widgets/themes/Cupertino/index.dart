@@ -13,8 +13,7 @@ import './CupertinoPopupSurface/index.dart' as CupertinoPopupSurface;
 import './CupertinoScrollbar/index.dart' as CupertinoScrollbar;
 import './CupertinoSlider/index.dart' as CupertinoSlider;
 import './CupertinoSegmentedControl/index.dart' as CupertinoSegmentedControl;
-import './CupertinoSliverNavigationBar/index.dart'
-    as CupertinoSliverNavigationBar;
+import './CupertinoSliverNavigationBar/index.dart' as CupertinoSliverNavigationBar;
 import './CupertinoSwitch/index.dart' as CupertinoSwitch;
 import './CupertinoTabBar/index.dart' as CupertinoTabBar;
 import './CupertinoTabScaffold/index.dart' as CupertinoTabScaffold;
@@ -118,3 +117,4 @@ List<WidgetPoint> widgetPoints = [
     buildRouter: (BuildContext context) => CupertinoTimerPicker.Demo(),
   ),
 ];
+

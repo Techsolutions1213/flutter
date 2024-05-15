@@ -12,23 +12,26 @@ class AboutDialogDemo extends StatefulWidget {
 }
 
 class _Demo extends State<AboutDialogDemo> {
+  
   void showAlertDialog(BuildContext context) {
     showDialog(
         context: context,
-        builder: (_) => AboutDialog(
-            applicationName: '名称',
-            applicationIcon: Icon(Icons.ac_unit),
-            applicationVersion: 'V1.0',
-            children: <Widget>[Text('我是一个关于的dialog')]));
+        builder: (_) =>  AboutDialog(
+          applicationName: '名称',
+          applicationIcon:  Icon(Icons.ac_unit),
+          applicationVersion: 'V1.0',
+          children: <Widget>[
+            Text('我是一个关于的dialog')
+          ]
+        ));
   }
-
   Widget build(BuildContext context) {
-    return RaisedButton(
-        padding: EdgeInsets.fromLTRB(10.0, 10.0, 10.0, 10.0),
+    return  RaisedButton(
+        padding:  EdgeInsets.fromLTRB(10.0, 10.0, 10.0, 10.0),
         //padding
-        child: Text(
+        child:  Text(
           'show aboutDialog',
-          style: TextStyle(
+          style:  TextStyle(
             fontSize: 18.0, //textsize
             color: Colors.white, // textcolor
           ),
@@ -39,6 +42,6 @@ class _Demo extends State<AboutDialogDemo> {
         splashColor: Colors.blueGrey,
         onPressed: () {
           showAlertDialog(context);
-        });
+      });
   }
 }
